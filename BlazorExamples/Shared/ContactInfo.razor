@@ -1,0 +1,9 @@
+﻿<p>@Name<br />@string.Format("{0:(###) ###-####}", PhoneNumber)</p>
+
+@code {
+    [CascadingParameter]
+    public string Name { get; set; }
+
+    [CascadingParameter]
+    public int PhoneNumber { get; set; }
+}

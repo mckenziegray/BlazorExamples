@@ -1,0 +1,17 @@
+﻿@page "/interop"
+@inject IJSRuntime JS
+
+<h1>JavaScript Interoperability</h1>
+
+<p @ref="message"></p>
+
+<button @onclick="SetMessage">Invoke JavaScript</button>
+
+@code {
+    private ElementReference message;
+
+    private async Task SetMessage()
+    {
+        await JS.InvokeVoidAsync("setMessage", message);
+    }
+}

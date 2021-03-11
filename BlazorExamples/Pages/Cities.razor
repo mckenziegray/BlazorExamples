@@ -1,0 +1,41 @@
+﻿@page "/cities"
+@inject ICitiesService CitiesService
+
+<h1>Cities</h1>
+
+@if (serviceError)
+{
+    <ErrorText>An internal error has occurred.</ErrorText>
+}
+else if (cities == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <Table Items="cities">
+        <TableHeader>
+            <th>City</th>
+            <th>State or Province</th>
+            <th>Country</th>
+        </TableHeader>
+        <RowTemplate>
+            <td>@context.Name</td>
+            <td>@context.StateOrProvince</td>
+            <td>@context.Country</td>
+        </RowTemplate>
+    </Table>
+}
+
+@code {
+    private List<City> cities;
+
+    private bool serviceError = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cities = (await CitiesService.GetCitiesAsync())?.ToList();
+        if (cities == null)
+            serviceError = true;
+    }
+}

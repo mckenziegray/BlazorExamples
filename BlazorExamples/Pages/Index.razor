@@ -1,0 +1,19 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+<Counter IncrementAmount="5" @ref="counter" />
+<br />
+<br />
+<p>@message</p>
+<button @onclick="UpdateMessage">Record Current Count</button>
+
+@code {
+    private Counter counter;
+    private string message;
+
+    private void UpdateMessage()
+    {
+        message = $"Recorded count: {counter.CurrentCount}";
+    }
+}

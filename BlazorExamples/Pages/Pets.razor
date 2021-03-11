@@ -1,0 +1,40 @@
+﻿@page "/pets"
+
+<h1>Pets</h1>
+
+<Table Items="pets" style="width:auto;">
+    <TableHeader>
+        <th>Animal</th>
+        <th>Name</th>
+    </TableHeader>
+    <RowTemplate>
+        <td>@context.Animal</td>
+        <td>@context.Name</td>
+    </RowTemplate>
+</Table>
+
+<EditForm Model="newPet" OnValidSubmit="AddNewPet">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="newPet.Animal" placeholder="Animal"></InputText>
+    <InputText id="name" @bind-Value="newPet.Name" placeholder="Name"></InputText>
+    <button type="submit">Add</button>
+</EditForm>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { Animal = "Dog", Name = "Cesar" },
+        new Pet { Animal = "Dog", Name = "Cedric" },
+        new Pet { Animal = "Cat", Name = "Alex" },
+        new Pet { Animal = "Bird", Name = "Fern" }
+    };
+    private Pet newPet = new Pet();
+
+    private void AddNewPet()
+    {
+        pets.Add(newPet);
+        newPet = new Pet();
+    }
+}

@@ -1,0 +1,18 @@
+﻿@page "/resettablecounter"
+
+<h1>Resettable Counter</h1>
+
+<Counter IncrementAmount="ChangeAmount" @bind-CurrentCount="currentCount" />
+<button @onclick="Reset">Reset</button>
+
+@code {
+    [Parameter]
+    public int ChangeAmount { get; set; } = 1;
+
+    private int currentCount;
+
+    private void Reset()
+    {
+        currentCount = 0;
+    }
+}

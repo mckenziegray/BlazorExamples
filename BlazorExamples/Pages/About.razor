@@ -1,0 +1,14 @@
+﻿@page "/about"
+
+This app is a demonstration of Blazor!
+
+<CascadingValue Value="contactName">
+    <CascadingValue Value="contactPhone">
+        <ContactMessage />
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private string contactName = "Samuel L. Jackson";
+    private int contactPhone = 1234567890;
+}
